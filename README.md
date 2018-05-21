@@ -57,14 +57,18 @@ Then, run the method you want from our service:
     });
 ```
 
+## Notes
+- this package is depending on firebase main package.
+- this package installs the firebase package so you can use it normally.
+
 ## angular-firebase methods
 
 
 ### Authentication
-- **signupMial(email,password)**
+- **signupMail(email,password)**
 
 ```javascript
-    this.fb.signupMial('example@example.com','password').then((value) => {
+    this.fb.signupMail('example@example.com','password').then((value) => {
       console.log(value); //return any validation message like 'this email not valid'
     });
 
@@ -79,7 +83,25 @@ Then, run the method you want from our service:
 
 ```
 
-- **signin3rdparty(email)**
+- **signin3rdparty(credential)**
+
+```javascript
+    signin3rdparty(credential).then((value) => {
+      console.log(value); //return any validation message.'
+    });
+
+```
+
+> **note**
+> this used with facebook, Google, Twitter or GitHub
+> just setup your firebase to use this authentication methods and prepare your authentication provider to allow firebase using it
+>
+> after this you should download the library for the provider to authenticate with its account 
+> at last the authentication will return the credential witch used to sign in to firebas
+>
+
+
+
 - **signout()**
 
 ```javascript
@@ -254,6 +276,54 @@ Then, run the method you want from our service:
 
 ```
 
+### Storage
+
+- **uploadFile(File, filePath, callback)**
+
+
+```javascript
+    this.firebase.uploadFile(file,'images/1.jpg',
+    (v)=>{
+        console.log(v)    //event detect the data uploaded  used to monitor the persentage of the download process
+    }).then((v)=>{
+        console.log(v)    //the url of uploaded file
+    });
+
+```
+
+- **uploadString(encodedFile, filePath, fileType, callback)**
+
+```javascript
+    this.firebase.uploadString(encodedFile,'images/1.jpg','base64',
+    (v)=>{
+        console.log(v)    //event detect the data uploaded  used to monitor the persentage of the download process
+    }).then((v)=>{
+        console.log(v)    //the url of uploaded file
+    });
+
+```
+
+- **removeFile(filePath, successfulCallback, failCallback)**
+
+```javascript
+    this.firebase.removeFile('images/1.jpg',
+    ()=>{
+        // run code after succesfuly removed file
+    }), 
+    (error)=>{
+        console.log(error)    //show any failier error message
+    })
+
+```
+
+- **getFileLink(filePath)**
+
+```javascript
+    this.firebase.getFileLink(filePath).then((url)=>{
+        console.log(url);
+    });
+
+```
 
 ## License
 ### MIT
