@@ -28,6 +28,7 @@ export declare class FirebaseProvider {
     getFileLink(filePath: string): Promise<{}>;
     removeFile(filePath: string, successfulCallback?: () => void, failCallback?: (error: any) => void): void;
 }
+
 export declare class firebaseQuery {
     startAt?: any;
     endAt?: any;
